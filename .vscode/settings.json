@@ -1,0 +1,13 @@
+{
+  "python.defaultInterpreterPath": "./backend/venv/Scripts/python.exe",
+  "python.analysis.extraPaths": [
+    "./backend",
+    "./backend/apps"
+  ],
+  "python.autoComplete.extraPaths": [
+    "./backend",
+    "./backend/apps"
+  ],
+  "css.customData": [],
+  "css.lint.unknownAtRules": "ignore"
+}

@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  # Next.js SEO-First Frontend
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://backend:8000/api
+    depends_on:
+      - backend
+    restart: always
+
+  # Django REST Framework Backend
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - DJANGO_DEBUG=False
+      - DJANGO_SECRET_KEY=production-secret-key-australian-supplements-2026
+      - DATABASE_URL=postgres://aussie_user:aussie_pass@db:5432/aussie_supplements_db
+      - REDIS_URL=redis://redis:6337/0
+    depends_on:
+      - db
+      - redis
+    restart: always
+
+  # PostgreSQL Database
+  db:
+    image: postgres:16-alpine
+    environment:
+      - POSTGRES_USER=aussie_user
+      - POSTGRES_PASSWORD=aussie_pass
+      - POSTGRES_DB=aussie_supplements_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: always
+
+  # Redis Cache & Broker
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    restart: always
+
+volumes:
+  postgres_data:
