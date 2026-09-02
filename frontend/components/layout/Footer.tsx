@@ -67,7 +67,7 @@ export const Footer: React.FC = () => {
             </div>
             <div>
               <h4 className="text-sm font-bold text-white">Express Dispatch</h4>
-              <p className="text-xs text-eucalyptus-200 mt-0.5">Australia Post eParcel</p>
+              <p className="text-xs text-eucalyptus-200 mt-0.5">Colombo & Island-Wide Courier</p>
             </div>
           </div>
         </div>
@@ -86,7 +86,7 @@ export const Footer: React.FC = () => {
               />
             </Link>
             <p className="text-sm text-eucalyptus-200 max-w-sm leading-relaxed">
-              Australia&apos;s leading evidence-based sports nutrition and wellness platform. Sourcing certified pure raw materials for both retail athletes and commercial B2B wholesale partners.
+              Sri Lanka&apos;s trusted destination for 100% authentic, imported Australian sports nutrition and wellness brands. Sourcing certified original supplements with fast island-wide dispatch from Colombo.
             </p>
 
             {/* Newsletter */}
@@ -240,15 +240,17 @@ export const Footer: React.FC = () => {
         </div>
       </div>
 
-      {/* Bottom Legal & ABN Notice */}
+      {/* Bottom Legal & Colombo Sri Lanka Business Notice */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 border-t border-eucalyptus-900 text-xs text-eucalyptus-300 flex flex-col sm:flex-row items-center justify-between gap-4">
         <p>
-          © {new Date().getFullYear()} Aussie Supplements Pty Ltd. ABN: 51 824 753 556. All prices include 10% Australian GST.
+          © {new Date().getFullYear()} Aussie Supplements (Pvt) Ltd. Colombo, Sri Lanka. 100% Authentic Australian Imported Brands.
         </p>
         <div className="flex items-center gap-4 text-eucalyptus-300">
-          <span>Melbourne • Sydney • Brisbane Dispatch</span>
+          <span>Colombo Central Hub</span>
           <span>•</span>
-          <span>Australia Post eParcel Partner</span>
+          <span>Island-Wide Delivery Across Sri Lanka</span>
+          <span>•</span>
+          <span>Cash on Delivery &amp; Card</span>
         </div>
       </div>
     </footer>

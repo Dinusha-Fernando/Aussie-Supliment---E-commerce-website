@@ -75,7 +75,7 @@ export default function AccountPage() {
           </div>
           <h2 className="text-base font-extrabold text-charcoal-900">Order History & Tracking</h2>
           <p className="text-xs text-charcoal-500 leading-relaxed">
-            Track live Australia Post eParcel shipments, view invoices, and repeat past orders.
+            Track live express courier shipments, view invoices, and repeat past orders.
           </p>
           <span className="text-xs font-bold text-eucalyptus-800 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
             View Orders →

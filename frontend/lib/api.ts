@@ -28,8 +28,8 @@ export const FALLBACK_SITE_CONFIG: SiteConfig = {
   usd_multiplier: 0.65,
   aud_multiplier: 1.0,
   contact_email: 'wpjinadhi@gmail.com',
-  contact_phone: '1300 892 877',
-  warehouse_location: 'Melbourne Distribution Hub, Victoria, Australia',
+  contact_phone: '077 569 6254',
+  warehouse_location: 'Colombo Distribution Hub, Colombo, Sri Lanka',
   is_store_open: true,
   maintenance_mode: false
 };
@@ -169,10 +169,10 @@ export const FALLBACK_QUIZ_QUESTIONS: DiagnosticQuestion[] = [
 ];
 
 export const FALLBACK_TRUST_PILLARS: TrustPillarItem[] = [
-  { id: 1, title: '100% Australian Sourced', subtitle: 'Blended in Victoria', icon_type: 'Flag', order: 1, is_active: true },
-  { id: 2, title: 'TGA & ARTG Listed', subtitle: 'Therapeutic Lab Assayed', icon_type: 'ShieldCheck', order: 2, is_active: true },
-  { id: 3, title: 'Same-Day Dispatch', subtitle: 'Australia Post Express', icon_type: 'Truck', order: 3, is_active: true },
-  { id: 4, title: '100% Clean Label', subtitle: 'Zero Artificial Sweeteners', icon_type: 'Leaf', order: 4, is_active: true }
+  { id: 1, title: '100% Australian Sourced', subtitle: 'Imported from Australia', icon_type: 'Flag', order: 1, is_active: true },
+  { id: 2, title: 'TGA & Lab Verified', subtitle: 'HPLC Tested & Certified', icon_type: 'ShieldCheck', order: 2, is_active: true },
+  { id: 3, title: 'Express Dispatch', subtitle: 'Colombo & Island-Wide', icon_type: 'Truck', order: 3, is_active: true },
+  { id: 4, title: '100% Clean Label', subtitle: 'Zero Artificial Fillers', icon_type: 'Leaf', order: 4, is_active: true }
 ];
 
 // Fallback seed catalog for instant client-side rendering & static generation
@@ -912,10 +912,10 @@ export const api = {
       city: orderPayload.city,
       state: orderPayload.state,
       postcode: orderPayload.postcode,
-      country: 'Australia',
+      country: 'Sri Lanka',
       shipping_method: orderPayload.shipping_method,
-      tracking_number: `AP-${orderNum}`,
-      carrier: 'Australia Post eParcel Express',
+      tracking_number: `LK-${orderNum}`,
+      carrier: 'Island-Wide Express Courier (Colombo Hub)',
       payment_status: 'PAID',
       payment_method: orderPayload.payment_method || 'Credit Card (Stripe)',
       created_at: new Date().toISOString(),

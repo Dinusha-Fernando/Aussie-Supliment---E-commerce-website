@@ -85,7 +85,7 @@ function SuccessContent() {
 
 📍 *Shipping Address:*
 ${shippingAddr}
-Carrier: ${order?.carrier || 'Australia Post eParcel Express'}
+Carrier: ${order?.carrier || 'Island-Wide Express Courier (Colombo Hub)'}
 
 📦 *Items Purchased:*
 ${itemsText}
@@ -100,7 +100,7 @@ WhatsApp: +94 77 569 6254 (077 569 6254)`;
   const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(whatsappReceiptMessage)}`;
 
   const customerTrackingUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-    `Hi Aussie Supplements team! I have completed payment for Order #${orderNumber} ($${total}). Please send my Australia Post tracking details to this WhatsApp number!`
+    `Hi Aussie Supplements team! I have completed payment for Order #${orderNumber} ($${total}). Please send my delivery courier tracking details to this WhatsApp number!`
   )}`;
 
   const handleCopyReceipt = () => {
@@ -238,7 +238,7 @@ WhatsApp: +94 77 569 6254 (077 569 6254)`;
           </div>
           <div>
             <span className="text-xs text-charcoal-400 font-bold uppercase">Carrier Dispatch</span>
-            <span className="text-xs font-extrabold text-success block">Australia Post eParcel Express</span>
+            <span className="text-xs font-extrabold text-success block">Island-Wide Express Courier (Colombo Hub)</span>
           </div>
         </div>
 

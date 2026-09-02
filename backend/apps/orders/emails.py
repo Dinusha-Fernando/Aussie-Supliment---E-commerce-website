@@ -45,7 +45,7 @@ def format_whatsapp_order_text(order):
 📍 *SHIPPING DESTINATION:*
 {full_address}
 - *Method:* {order.shipping_method}
-- *Carrier:* {getattr(order, 'carrier', 'Australia Post eParcel')}
+- *Carrier:* {getattr(order, 'carrier', 'Island-Wide Express Courier (Colombo Hub)')}
 
 📦 *ITEMS ORDERED ({len(items_list)} item{'s' if len(items_list) != 1 else ''}):*
 {items_block}
@@ -128,7 +128,7 @@ Phone:   {order.customer_phone}
 
 SHIPPING ADDRESS:
 {full_address}
-Courier: {getattr(order, 'carrier', 'Australia Post eParcel Express')}
+Courier: {getattr(order, 'carrier', 'Island-Wide Express Courier (Colombo Hub)')}
 
 ITEMS PURCHASED:
 {items_summary_text}
@@ -241,8 +241,8 @@ https://aussiesupplements.com.au
 
     <!-- Footer -->
     <div style="background: #F7F8F4; border-top: 1px solid #e1e3db; padding: 18px; text-align: center; font-size: 11px; color: #778;">
-      <p style="margin: 0 0 4px 0;">© Aussie Supplements Pty Ltd • Official Support: {getattr(settings, 'CONTACT_EMAIL', 'wpjinadhi@gmail.com')}</p>
-      <p style="margin: 0;">Hotline: 077 569 6254 / +94 77 569 6254 • Melbourne & Sydney Fulfillment</p>
+      <p style="margin: 0 0 4px 0;">© Aussie Supplements (Pvt) Ltd • 100% Authentic Australian Supplements • Support: {getattr(settings, 'CONTACT_EMAIL', 'wpjinadhi@gmail.com')}</p>
+      <p style="margin: 0;">Hotline: 077 569 6254 / +94 77 569 6254 • Colombo Central Distribution Hub, Sri Lanka</p>
     </div>
   </div>
 </body>

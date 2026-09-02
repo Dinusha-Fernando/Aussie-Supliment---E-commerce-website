@@ -148,7 +148,7 @@ export default function HomePage() {
 
                 <div className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-950/60 border border-emerald-500/30 text-[11px] font-bold text-emerald-300 backdrop-blur-md">
                   <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-                  <span>Melbourne Logistics: Live Dispatch</span>
+                  <span>Colombo Hub: Live Island-Wide Dispatch</span>
                 </div>
               </div>
 
@@ -183,14 +183,14 @@ export default function HomePage() {
                     }`}
                   >
                     <Building2 className="w-3.5 h-3.5" />
-                    <span>COMMERCIAL WHOLESALE (ABN)</span>
+                    <span>COMMERCIAL WHOLESALE (B2B)</span>
                   </button>
                 </div>
 
                 <p className="text-sm sm:text-base text-eucalyptus-100/90 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal">
                   {heroPersonaTab === 'retail'
                     ? activeFormula.subline
-                    : 'Official B2B commercial supply for gyms, CrossFit boxes, recovery clinics, and pharmacies. Volume SKU tier schedules, ABN tax invoicing, and rapid dispatch from our Melbourne logistics center.'}
+                    : 'Official B2B commercial supply for gyms, fitness clubs, and sports clinics across Sri Lanka. Volume wholesale schedules, commercial invoicing, and rapid dispatch from our Colombo distribution hub.'}
                 </p>
               </div>
 
@@ -424,7 +424,7 @@ export default function HomePage() {
                 </div>
                 <div>
                   <h5 className="font-black text-xs text-white">Same-Day Dispatch</h5>
-                  <p className="text-[11px] text-eucalyptus-300">Australia Post Express</p>
+                  <p className="text-[11px] text-eucalyptus-300">Colombo &amp; Island-Wide</p>
                 </div>
               </div>
 

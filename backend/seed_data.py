@@ -563,7 +563,7 @@ def seed():
             'postcode': '2000',
             'shipping_method': Order.ShippingMethod.STANDARD,
             'tracking_number': 'AP-SYD-998241',
-            'carrier': 'Australia Post eParcel Express',
+            'carrier': 'Island-Wide Express Courier (Colombo Hub)',
             'payment_status': Order.PaymentStatus.PAID,
             'payment_method': 'Apple Pay (Stripe)'
         }

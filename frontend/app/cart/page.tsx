@@ -221,7 +221,7 @@ export default function CartPage() {
               </div>
             )}
             <div className="flex justify-between">
-              <span>Shipping (Australia Post)</span>
+              <span>Island-Wide Shipping</span>
               <span className="font-bold text-charcoal-900">
                 {shippingFee === 0 ? 'FREE' : formatPrice(9.95)}
               </span>

@@ -363,7 +363,7 @@ export default function AboutPage() {
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
                   </span>
-                  <span>Melbourne Logistics: Live Dispatch Active</span>
+                  <span>Colombo Hub: Live Dispatch Active</span>
                 </div>
                 <Truck className="w-3.5 h-3.5 text-gold-400" />
               </div>
@@ -604,7 +604,7 @@ export default function AboutPage() {
 
               <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-white/10">
                 <div className="text-xs text-eucalyptus-200">
-                  <span className="text-gold-400 font-bold">280+ Gym Partners</span> • Same-day Melbourne dispatch
+                  <span className="text-gold-400 font-bold">Commercial Gym Partners</span> • Same-day Colombo dispatch
                 </div>
                 <Link
                   href="/wholesale"
@@ -861,7 +861,7 @@ export default function AboutPage() {
             </h2>
 
             <p className="text-xs sm:text-base text-eucalyptus-100/90 leading-relaxed max-w-2xl mx-auto">
-              Join over 15,000+ athletes and 280+ commercial gym partners nationwide. All retail orders dispatch same-day via Australia Post Express from our Melbourne fulfillment center.
+              Join thousands of athletes and gym partners across Sri Lanka. All orders dispatch same-day via express courier from our Colombo fulfillment hub.
             </p>
           </div>
 
@@ -902,7 +902,7 @@ export default function AboutPage() {
             </div>
             <div className="flex items-center gap-2">
               <Truck className="w-4 h-4 text-gold-400" />
-              <span>Same-Day Melbourne Warehouse Freight</span>
+              <span>Same-Day Colombo Hub Dispatch</span>
             </div>
           </div>
         </div>

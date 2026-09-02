@@ -78,7 +78,7 @@ export default function WholesaleDashboardPage() {
             <span className="text-[10px] font-black uppercase tracking-widest text-gold-400 bg-gold-500/20 px-3 py-1 rounded-full border border-gold-500/30">
               Verified Commercial Trade
             </span>
-            <span className="text-xs text-eucalyptus-200">ABN: 51 824 753 556</span>
+            <span className="text-xs text-eucalyptus-200">B2B Partner ID: LK-TRADE-824</span>
           </div>
           <h1 className="text-2xl sm:text-3xl font-black text-white">
             Wholesale Portal • Quick Order Matrix
@@ -119,7 +119,7 @@ export default function WholesaleDashboardPage() {
 
         <div className="flex items-center gap-4 text-xs text-charcoal-500">
           <span className="flex items-center gap-1.5 font-bold text-success">
-            <CheckCircle2 className="w-4 h-4 text-success" /> All SKUs In Stock in Sydney/Melbourne Hubs
+            <CheckCircle2 className="w-4 h-4 text-success" /> All SKUs In Stock in Colombo Hub
           </span>
         </div>
       </div>

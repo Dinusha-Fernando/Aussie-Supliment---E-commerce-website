@@ -26,16 +26,16 @@ export default function CheckoutPage() {
   const router = useRouter();
   const { cart, cartSubtotal, clearCart, showToast, isWholesaleMode, currentUser, formatPrice } = useStore();
 
-  const [email, setEmail] = useState(currentUser?.email || 'sarah.miller@sydneyfitness.com.au');
-  const [phone, setPhone] = useState(currentUser?.phone || '0412 345 678');
-  const [firstName, setFirstName] = useState(currentUser?.first_name || 'Sarah');
-  const [lastName, setLastName] = useState(currentUser?.last_name || 'Miller');
+  const [email, setEmail] = useState(currentUser?.email || '');
+  const [phone, setPhone] = useState(currentUser?.phone || '');
+  const [firstName, setFirstName] = useState(currentUser?.first_name || '');
+  const [lastName, setLastName] = useState(currentUser?.last_name || '');
   const [companyName, setCompanyName] = useState('');
-  const [streetAddress, setStreetAddress] = useState('42 Pitt Street');
-  const [apartment, setApartment] = useState('Level 4, Suite 12');
-  const [city, setCity] = useState('Sydney');
-  const [state, setState] = useState('NSW');
-  const [postcode, setPostcode] = useState('2000');
+  const [streetAddress, setStreetAddress] = useState('');
+  const [apartment, setApartment] = useState('');
+  const [city, setCity] = useState('Colombo');
+  const [state, setState] = useState('Western - Colombo');
+  const [postcode, setPostcode] = useState('00700');
   const [shippingMethod, setShippingMethod] = useState<'STANDARD' | 'EXPRESS' | 'PALLET_FREIGHT'>('STANDARD');
   const [paymentMethod, setPaymentMethod] = useState<'CREDIT_CARD' | 'AFTERPAY' | 'INVOICE'>('CREDIT_CARD');
   const [isProcessing, setIsProcessing] = useState(false);
@@ -138,7 +138,7 @@ export default function CheckoutPage() {
         <div className="flex items-center gap-2 text-xs text-charcoal-500 font-semibold">
           <Link href="/cart" className="hover:text-eucalyptus-900">Cart</Link>
           <ChevronRight className="w-3.5 h-3.5" />
-          <span className="text-charcoal-900 font-bold">Secure Australian Checkout</span>
+          <span className="text-charcoal-900 font-bold">Secure Checkout • 100% Authentic Australian Supplements</span>
         </div>
         <div className="flex items-center gap-1.5 text-xs text-eucalyptus-900 font-bold">
           <Lock className="w-3.5 h-3.5 text-gold-600" />
@@ -167,7 +167,7 @@ export default function CheckoutPage() {
                 />
               </div>
               <div className="space-y-1 sm:col-span-2">
-                <label className="font-bold text-charcoal-700">Australian Mobile Phone *</label>
+                <label className="font-bold text-charcoal-700">Mobile Phone Number (WhatsApp updates) *</label>
                 <input
                   type="tel"
                   value={phone}
@@ -246,24 +246,24 @@ export default function CheckoutPage() {
                 />
               </div>
               <div className="space-y-1">
-                <label className="font-bold text-charcoal-700">State *</label>
+                <label className="font-bold text-charcoal-700">District / Province *</label>
                 <select
                   value={state}
                   onChange={(e) => setState(e.target.value)}
                   className="w-full px-4 py-2.5 bg-offwhite border border-sand rounded-xl text-xs font-bold"
                 >
-                  <option value="NSW">New South Wales (NSW)</option>
-                  <option value="VIC">Victoria (VIC)</option>
-                  <option value="QLD">Queensland (QLD)</option>
-                  <option value="WA">Western Australia (WA)</option>
-                  <option value="SA">South Australia (SA)</option>
-                  <option value="TAS">Tasmania (TAS)</option>
-                  <option value="ACT">Australian Capital Territory (ACT)</option>
-                  <option value="NT">Northern Territory (NT)</option>
+                  <option value="Colombo">Colombo (Western Province)</option>
+                  <option value="Gampaha">Gampaha (Western Province)</option>
+                  <option value="Kalutara">Kalutara (Western Province)</option>
+                  <option value="Kandy">Kandy (Central Province)</option>
+                  <option value="Galle">Galle (Southern Province)</option>
+                  <option value="Matara">Matara (Southern Province)</option>
+                  <option value="Kurunegala">Kurunegala (North Western)</option>
+                  <option value="Other">Other Island-Wide District</option>
                 </select>
               </div>
               <div className="space-y-1">
-                <label className="font-bold text-charcoal-700">Postcode *</label>
+                <label className="font-bold text-charcoal-700">Postal Code *</label>
                 <input
                   type="text"
                   value={postcode}
@@ -276,7 +276,7 @@ export default function CheckoutPage() {
                 <label className="font-bold text-charcoal-700">Country</label>
                 <input
                   type="text"
-                  value="Australia"
+                  value="Sri Lanka"
                   disabled
                   className="w-full px-4 py-2.5 bg-sand/60 border border-sand rounded-xl text-xs font-bold text-charcoal-500"
                 />
@@ -310,10 +310,10 @@ export default function CheckoutPage() {
                   />
                   <div>
                     <span className="font-extrabold text-charcoal-900 block text-xs">
-                      Standard eParcel Tracked Delivery (2–4 Business Days)
+                      Standard Island-Wide Tracked Courier (1–3 Business Days)
                     </span>
                     <span className="text-charcoal-500 text-[11px]">
-                      {cartSubtotal >= 100 ? `Free over ${formatPrice(100)} spend` : 'Standard domestic rate'}
+                      {cartSubtotal >= 100 ? `Free over ${formatPrice(100)} spend` : 'Standard prompt delivery'}
                     </span>
                   </div>
                 </div>
@@ -340,9 +340,9 @@ export default function CheckoutPage() {
                   />
                   <div>
                     <span className="font-extrabold text-charcoal-900 block text-xs">
-                      Australia Post Express Air Courier (1–2 Days Next-Flight)
+                      Colombo Express Priority Dispatch (Same-Day / Next-Day)
                     </span>
-                    <span className="text-charcoal-500 text-[11px]">Priority warehouse packing & dispatch</span>
+                    <span className="text-charcoal-500 text-[11px]">Direct warehouse fulfillment from Colombo</span>
                   </div>
                 </div>
                 <strong className="text-eucalyptus-950 font-black">{formatPrice(14.95)}</strong>

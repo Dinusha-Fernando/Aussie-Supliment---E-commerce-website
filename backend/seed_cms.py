@@ -124,7 +124,7 @@ def seed_cms():
     TrustPillar.objects.all().delete()
     TrustPillar.objects.create(title="100% Australian Sourced", subtitle="Blended in Victoria", icon_type="Flag", order=1)
     TrustPillar.objects.create(title="TGA & ARTG Listed", subtitle="Therapeutic Lab Assayed", icon_type="ShieldCheck", order=2)
-    TrustPillar.objects.create(title="Same-Day Dispatch", subtitle="Australia Post Express", icon_type="Truck", order=3)
+    TrustPillar.objects.create(title="Express Dispatch", subtitle="Colombo & Island-Wide", icon_type="Truck", order=3)
     TrustPillar.objects.create(title="100% Clean Label", subtitle="Zero Artificial Sweeteners", icon_type="Leaf", order=4)
     print("[OK] Trust Pillars initialized.")
 

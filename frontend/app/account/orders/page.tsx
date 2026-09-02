@@ -22,9 +22,9 @@ export default function AccountOrdersPage() {
       order_number: 'AUS-2026-8812',
       date: '2026-02-14',
       status: 'DELIVERED',
-      tracking_number: 'AP-SYD-998241',
+      tracking_number: 'LK-COL-998241',
       total: 134.90,
-      carrier: 'Australia Post eParcel Express',
+      carrier: 'Island-Wide Express Courier (Colombo Hub)',
       items: [
         { name: 'Aussie Pure 100% Grass-Fed Whey Protein Isolate 2kg', size: '2kg / Chocolate', qty: 1, price: 89.95 },
         { name: 'Tasman Performance Ultra-Pure Creapure® Creatine 500g', size: '500g', qty: 1, price: 44.95 }
@@ -34,9 +34,9 @@ export default function AccountOrdersPage() {
       order_number: 'AUS-2026-7241',
       date: '2026-01-20',
       status: 'DELIVERED',
-      tracking_number: 'AP-MEL-441029',
+      tracking_number: 'LK-COL-441029',
       total: 39.95,
-      carrier: 'Australia Post Standard',
+      carrier: 'Colombo Express Courier',
       items: [
         { name: 'Outback Nutra High-Absorption Magnesium Bisglycinate', size: '120 Veg Caps', qty: 1, price: 39.95 }
       ]

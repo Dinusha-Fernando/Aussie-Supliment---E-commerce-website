@@ -113,9 +113,9 @@ export default function ContactPage() {
                   <MapPin className="w-4 h-4 text-eucalyptus-800" />
                 </div>
                 <div>
-                  <strong className="text-charcoal-900 block font-bold text-sm">Headquarters & Fulfillment</strong>
-                  <span className="text-charcoal-600">42 Pitt Street, Sydney NSW 2000</span>
-                  <span className="text-charcoal-400 block text-[10px]">Melbourne Logistics Center: Tullamarine VIC 3043</span>
+                  <strong className="text-charcoal-900 block font-bold text-sm">Fulfillment & Distribution Hub</strong>
+                  <span className="text-charcoal-600">Colombo Central Distribution Hub, Colombo, Sri Lanka</span>
+                  <span className="text-charcoal-400 block text-[10px]">Island-Wide Express Delivery across Sri Lanka</span>
                 </div>
               </div>
             </div>
@@ -129,7 +129,7 @@ export default function ContactPage() {
               <CheckCircle2 className="w-10 h-10 text-success mx-auto" />
               <h3 className="text-lg font-black text-charcoal-950">Thank you for reaching out</h3>
               <p className="text-xs text-charcoal-600">
-                We have received your message and an Australian team member will contact you within 4 business hours.
+                We have received your message and our customer desk will contact you within 4 business hours.
               </p>
             </div>
           ) : (
@@ -144,7 +144,7 @@ export default function ContactPage() {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     required
-                    placeholder="e.g. Sarah Miller"
+                    placeholder="Your Name"
                     className="w-full px-4 py-2.5 bg-offwhite border border-sand rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-eucalyptus-800"
                   />
                 </div>
@@ -156,7 +156,7 @@ export default function ContactPage() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
-                    placeholder="sarah@example.com.au"
+                    placeholder="your.email@example.com"
                     className="w-full px-4 py-2.5 bg-offwhite border border-sand rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-eucalyptus-800"
                   />
                 </div>
@@ -170,8 +170,8 @@ export default function ContactPage() {
                   className="w-full px-4 py-2.5 bg-offwhite border border-sand rounded-xl text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-eucalyptus-800"
                 >
                   <option value="Product Inquiry">Product Formulation & Ingredients Inquiry</option>
-                  <option value="Order Tracking">Order Dispatch & Australia Post Tracking</option>
-                  <option value="Wholesale B2B">Wholesale B2B Account & Commercial Rates</option>
+                  <option value="Order Tracking">Order Dispatch & Island-Wide Delivery Tracking</option>
+                  <option value="Wholesale B2B">Wholesale B2B Account & Gym Partner Rates</option>
                   <option value="Other">General Feedback</option>
                 </select>
               </div>

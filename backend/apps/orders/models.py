@@ -27,9 +27,9 @@ class Order(models.Model):
         REFUNDED = 'REFUNDED', 'Refunded'
 
     class ShippingMethod(models.TextChoices):
-        STANDARD = 'STANDARD', 'Standard Australian Delivery ($9.95 / Free over $100)'
-        EXPRESS = 'EXPRESS', 'Express Courier Dispatch ($14.95)'
-        PALLET_FREIGHT = 'PALLET_FREIGHT', 'B2B Pallet Commercial Freight ($45.00)'
+        STANDARD = 'STANDARD', 'Standard Island-Wide Tracked Courier'
+        EXPRESS = 'EXPRESS', 'Colombo Express Priority Dispatch'
+        PALLET_FREIGHT = 'PALLET_FREIGHT', 'Commercial Gym Wholesale Freight'
 
     order_number = models.CharField(max_length=50, unique=True, db_index=True)
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='orders')
@@ -39,7 +39,7 @@ class Order(models.Model):
     subtotal = models.DecimalField(max_digits=10, decimal_places=2)
     discount_amount = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     shipping_fee = models.DecimalField(max_digits=10, decimal_places=2, default=9.95)
-    tax_gst = models.DecimalField(max_digits=10, decimal_places=2, default=0.00, help_text="Includes 10% Australian GST")
+    tax_gst = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     total_amount = models.DecimalField(max_digits=10, decimal_places=2)
     
     coupon_code = models.CharField(max_length=50, blank=True, null=True)
@@ -53,13 +53,13 @@ class Order(models.Model):
     street_address = models.CharField(max_length=255)
     apartment = models.CharField(max_length=100, blank=True, null=True)
     city = models.CharField(max_length=100)
-    state = models.CharField(max_length=50) # NSW, VIC, QLD, WA, SA, TAS, ACT, NT
+    state = models.CharField(max_length=50) # District/Province (Colombo, Kandy, Galle, etc.)
     postcode = models.CharField(max_length=20)
-    country = models.CharField(max_length=100, default='Australia')
+    country = models.CharField(max_length=100, default='Sri Lanka')
     
     shipping_method = models.CharField(max_length=30, choices=ShippingMethod.choices, default=ShippingMethod.STANDARD)
     tracking_number = models.CharField(max_length=100, blank=True, null=True)
-    carrier = models.CharField(max_length=100, default='Australia Post Express')
+    carrier = models.CharField(max_length=100, default='Island-Wide Express Courier (Colombo Hub)')
 
     payment_status = models.CharField(max_length=20, choices=PaymentStatus.choices, default=PaymentStatus.PAID)
     payment_method = models.CharField(max_length=50, default='Credit Card (Stripe)')
