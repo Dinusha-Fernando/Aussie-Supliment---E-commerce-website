@@ -81,6 +81,15 @@ DATABASES = {
     }
 }
 
+# Auto-configure PostgreSQL if DATABASE_URL is provided (Production / Docker / Cloud)
+DATABASE_URL = os.getenv('DATABASE_URL')
+if DATABASE_URL:
+    try:
+        import dj_database_url
+        DATABASES['default'] = dj_database_url.config(default=DATABASE_URL, conn_max_age=600)
+    except ImportError:
+        pass
+
 # Custom User Model
 AUTH_USER_MODEL = 'accounts.User'
 
