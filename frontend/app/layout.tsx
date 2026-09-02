@@ -9,6 +9,7 @@ import { QuickViewModal } from "@/components/products/QuickViewModal";
 import { SupplementFinderModal } from "@/components/modals/SupplementFinderModal";
 import { CompareDrawer } from "@/components/modals/CompareDrawer";
 import { Toast } from "@/components/ui/Toast";
+import { WhatsAppWidget } from "@/components/ui/WhatsAppWidget";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -97,12 +98,13 @@ export default function RootLayout({
           <main className="flex-1">{children}</main>
           <Footer />
 
-          {/* Global Drawers, Modals & Toast */}
+          {/* Global Drawers, Modals, WhatsApp & Toast */}
           <CartDrawer />
           <QuickViewModal />
           <SupplementFinderModal />
           <CompareDrawer />
           <Toast />
+          <WhatsAppWidget />
         </Providers>
       </body>
     </html>

@@ -1,17 +1,23 @@
 from rest_framework import generics, permissions, status
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.throttling import ScopedRateThrottle
 from django.shortcuts import get_object_or_404
 from apps.orders.models import Order
 from apps.orders.serializers import OrderSerializer, OrderCreateSerializer
+from apps.orders.emails import send_order_confirmation_email
 
 class OrderCreateView(APIView):
     permission_classes = [permissions.AllowAny]
+    throttle_classes = [ScopedRateThrottle]
+    throttle_scope = 'payments'
+
 
     def post(self, request):
         serializer = OrderCreateSerializer(data=request.data, context={'request': request})
         serializer.is_valid(raise_exception=True)
         order = serializer.save()
+        send_order_confirmation_email(order)
         return Response(OrderSerializer(order).data, status=status.HTTP_201_CREATED)
 
 
@@ -28,7 +34,26 @@ class OrderDetailByNumberView(APIView):
 
     def get(self, request, order_number):
         order = get_object_or_404(Order.objects.prefetch_related('items', 'items__product'), order_number=order_number)
+
+        # Security: Broken Object-Level Authorization (BOLA/IDOR - OWASP API1)
+        if request.user.is_authenticated:
+            is_staff_or_admin = request.user.is_staff or getattr(request.user, 'role', '') == 'ADMIN'
+            if not is_staff_or_admin and order.user_id != request.user.id:
+                return Response(
+                    {'error': 'Forbidden: You do not have authorization to access this order.'},
+                    status=status.HTTP_403_FORBIDDEN
+                )
+        else:
+            # Guest order lookup requires matching customer email to prevent enumeration
+            email_param = request.query_params.get('email', '').strip().lower()
+            if not email_param or email_param != order.customer_email.strip().lower():
+                return Response(
+                    {'error': 'Forbidden: Email verification required for guest order lookup.'},
+                    status=status.HTTP_403_FORBIDDEN
+                )
+
         return Response(OrderSerializer(order).data)
+
 
 
 class AdminOrderListView(generics.ListAPIView):
@@ -75,6 +100,8 @@ class StripeConfigView(APIView):
 
 class CreatePaymentIntentView(APIView):
     permission_classes = [permissions.AllowAny]
+    throttle_classes = [ScopedRateThrottle]
+    throttle_scope = 'payments'
 
     def post(self, request):
         import stripe
@@ -90,7 +117,7 @@ class CreatePaymentIntentView(APIView):
         customer_email = data.get('customer_email', 'customer@example.com')
 
         # Stripe requires amounts in smallest currency unit (e.g. cents)
-        amount_in_cents = int(round(total_amount * 100))
+        amount_in_cents = round(total_amount * 100)
         if amount_in_cents <= 0:
             amount_in_cents = 1000  # Fallback $10.00 min for test
 
@@ -139,13 +166,20 @@ class StripeWebhookView(APIView):
         sig_header = request.META.get('HTTP_STRIPE_SIGNATURE')
         webhook_secret = getattr(settings, 'STRIPE_WEBHOOK_SECRET', '')
 
-        try:
-            if webhook_secret and sig_header:
+        # Security: Prevent Fake Webhook Injection (OWASP A01 / API Security)
+        if webhook_secret:
+            if not sig_header:
+                return HttpResponse("Missing HTTP_STRIPE_SIGNATURE header", status=400)
+            try:
                 event = stripe.Webhook.construct_event(payload, sig_header, webhook_secret)
-            else:
+            except (ValueError, stripe.error.SignatureVerificationError):
+                return HttpResponse("Invalid webhook signature", status=400)
+        else:
+            # If webhook secret is not set, only allow in local DEBUG mode
+            if settings.DEBUG:
                 event = request.data
-        except Exception:
-            return HttpResponse(status=400)
+            else:
+                return HttpResponse("Webhook signature validation required in production", status=403)
 
         # Handle successful payment intent
         event_type = event.get('type') if isinstance(event, dict) else getattr(event, 'type', '')
@@ -153,10 +187,13 @@ class StripeWebhookView(APIView):
             payment_intent = event['data']['object'] if isinstance(event, dict) else event.data.object
             order_number = payment_intent.get('metadata', {}).get('order_number')
             if order_number:
-                Order.objects.filter(order_number=order_number).update(
-                    payment_status=Order.PaymentStatus.PAID,
-                    status=Order.OrderStatus.CONFIRMED
-                )
+                order = Order.objects.filter(order_number=order_number).first()
+                if order:
+                    order.payment_status = Order.PaymentStatus.PAID
+                    order.status = Order.OrderStatus.CONFIRMED
+                    order.save()
+                    send_order_confirmation_email(order)
 
         return HttpResponse(status=200)
+
 

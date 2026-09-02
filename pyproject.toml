@@ -3,3 +3,14 @@ search-paths = [
     "backend",
     "backend/apps"
 ]
+search_paths = [
+    "backend",
+    "backend/apps"
+]
+
+[tool.pyright]
+extraPaths = [
+    "backend",
+    "backend/apps"
+]
+

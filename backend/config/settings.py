@@ -1,9 +1,11 @@
 import os
 from pathlib import Path
 from datetime import timedelta
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+load_dotenv(BASE_DIR / '.env')
 
 # Quick-start development settings - unsuitable for production
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-aussie-supplements-super-secret-key-2026')
@@ -124,6 +126,16 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 20,
+    'DEFAULT_THROTTLE_CLASSES': [
+        'rest_framework.throttling.AnonRateThrottle',
+        'rest_framework.throttling.UserRateThrottle',
+    ],
+    'DEFAULT_THROTTLE_RATES': {
+        'anon': '100/minute',
+        'user': '300/minute',
+        'login': '10/minute',
+        'payments': '20/minute',
+    },
 }
 
 # JWT Authentication settings
@@ -135,8 +147,14 @@ SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('Bearer',),
 }
 
-# CORS Configuration
-CORS_ALLOW_ALL_ORIGINS = True
+# CORS Configuration (Strict Whitelist - OWASP A05)
+CORS_ALLOW_ALL_ORIGINS = False
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',
+    'http://localhost:3001',
+    'http://127.0.0.1:3000',
+    'http://127.0.0.1:3001',
+]
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_HEADERS = [
     'accept',
@@ -150,7 +168,34 @@ CORS_ALLOW_HEADERS = [
     'x-requested-with',
 ]
 
-# Stripe Payment Gateway Configuration
-STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', 'pk_test_51MockTestKey1234567890abcdef')
-STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', 'sk_test_51MockSecretKey1234567890abcdef')
-STRIPE_WEBHOOK_SECRET = os.getenv('STRIPE_WEBHOOK_SECRET', 'whsec_MockWebhookSecret123456')
+# Security Headers & Cookie Flags (OWASP A02, A05)
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+X_FRAME_OPTIONS = 'DENY'
+SESSION_COOKIE_HTTPONLY = True
+CSRF_COOKIE_HTTPONLY = False
+SESSION_COOKIE_SAMESITE = 'Lax'
+CSRF_COOKIE_SAMESITE = 'Lax'
+
+
+# Stripe Payment Gateway Configuration (Read from environment only)
+STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', os.getenv('STRIPE_PUBLISHABLE_KEY', ''))
+STRIPE_PUBLISHABLE_KEY = STRIPE_PUBLIC_KEY
+STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')
+STRIPE_WEBHOOK_SECRET = os.getenv('STRIPE_WEBHOOK_SECRET', '')
+
+
+# Email Configuration (SMTP - Gmail)
+EMAIL_BACKEND = os.getenv('EMAIL_BACKEND', 'django.core.mail.backends.smtp.EmailBackend')
+EMAIL_HOST = os.getenv('EMAIL_HOST', 'smtp.gmail.com')
+EMAIL_PORT = int(os.getenv('EMAIL_PORT', 587))
+EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS', 'True').lower() in ('true', '1', 't')
+EMAIL_USE_SSL = os.getenv('EMAIL_USE_SSL', 'False').lower() in ('true', '1', 't')
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', 'wpjinadhi@gmail.com')
+# Strip spaces if user provides 16-character Google App Password with spaces
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', 'wyfucmjyhymfqqsi').replace(' ', '')
+DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', f'Aussie Supplements <{EMAIL_HOST_USER}>')
+SERVER_EMAIL = EMAIL_HOST_USER
+CONTACT_EMAIL = os.getenv('CONTACT_EMAIL', 'wpjinadhi@gmail.com')
+ADMIN_EMAIL = os.getenv('ADMIN_EMAIL', 'wpjinadhi@gmail.com')
+

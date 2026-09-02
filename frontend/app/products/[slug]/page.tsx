@@ -7,6 +7,7 @@ import { useStore } from '@/lib/storeContext';
 import { FALLBACK_PRODUCTS, FALLBACK_REVIEWS, api } from '@/lib/api';
 import { Product, Review } from '@/lib/types';
 import { ProductCard } from '@/components/products/ProductCard';
+import { WhatsAppProductBtn } from '@/components/ui/WhatsAppProductBtn';
 import {
   Star,
   ShoppingBag,
@@ -383,6 +384,14 @@ export default function ProductDetailPage() {
                   <span className="truncate">ADD TO CART • {formatPrice((isWholesaleMode ? wholesalePrice : retailPrice) * quantity)}</span>
                 </button>
               </div>
+
+              {/* WhatsApp Fast Order & Nutrition Consultation */}
+              <WhatsAppProductBtn
+                product={product}
+                quantity={quantity}
+                variant="outline"
+                customLabel="Ask Dietitian or Order on WhatsApp (077 569 6254)"
+              />
             </div>
 
             {/* Guarantees Bar */}

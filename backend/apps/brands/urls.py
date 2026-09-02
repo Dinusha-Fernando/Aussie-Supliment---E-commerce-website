@@ -1,5 +1,5 @@
 from django.urls import path
-from apps.brands.views import BrandListView, BrandDetailView, BrandAdminDetailByIdView
+from .views import BrandListView, BrandDetailView, BrandAdminDetailByIdView
 
 urlpatterns = [
     path('', BrandListView.as_view(), name='brand_list'),

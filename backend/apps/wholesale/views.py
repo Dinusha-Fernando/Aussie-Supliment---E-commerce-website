@@ -13,7 +13,19 @@ class WholesaleApplicationSubmitView(generics.CreateAPIView):
 
     def perform_create(self, serializer):
         user = self.request.user if self.request.user.is_authenticated else None
-        serializer.save(user=user)
+        app = serializer.save(user=user)
+        try:
+            from django.core.mail import send_mail
+            from django.conf import settings
+            send_mail(
+                subject=f"[New Wholesale Application] {app.business_name} (ABN: {app.abn})",
+                message=f"New wholesale application received:\n\nBusiness: {app.business_name}\nABN: {app.abn}\nContact: {app.contact_name}\nEmail: {app.email}\nPhone: {app.phone}\nType: {app.business_type}\nEstimated Monthly Volume: ${app.estimated_monthly_spend}",
+                from_email=getattr(settings, 'DEFAULT_FROM_EMAIL', 'wpjinadhi@gmail.com'),
+                recipient_list=[getattr(settings, 'ADMIN_EMAIL', 'wpjinadhi@gmail.com')],
+                fail_silently=True,
+            )
+        except Exception:
+            pass
 
 
 class WholesaleProductCatalogView(generics.ListAPIView):

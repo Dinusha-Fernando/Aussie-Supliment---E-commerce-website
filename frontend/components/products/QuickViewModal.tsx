@@ -17,6 +17,7 @@ import {
   Leaf
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { WhatsAppProductBtn } from '@/components/ui/WhatsAppProductBtn';
 
 export const QuickViewModal: React.FC = () => {
   const { quickViewProduct, setQuickViewProduct, addToCart, isWholesaleMode, formatPrice } = useStore();
@@ -173,6 +174,14 @@ export const QuickViewModal: React.FC = () => {
                   Add to Cart • {formatPrice(((isWholesaleMode ? wholesalePrice : retailPrice) * qty))}
                 </button>
               </div>
+
+              {/* WhatsApp Fast Consultation CTA */}
+              <WhatsAppProductBtn
+                product={quickViewProduct}
+                quantity={qty}
+                variant="outline"
+                customLabel="Ask Dietitian or Order on WhatsApp"
+              />
 
               <Link
                 href={`/products/${quickViewProduct.slug}`}

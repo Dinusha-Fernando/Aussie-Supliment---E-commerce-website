@@ -230,6 +230,7 @@ export interface Order {
   payment_method: string;
   created_at: string;
   items: OrderItem[];
+  whatsapp_receipt_url?: string;
 }
 
 export interface WholesaleTier {

@@ -8,6 +8,11 @@
     "./backend",
     "./backend/apps"
   ],
+  "pyrefly.searchPaths": [
+    "./backend",
+    "./backend/apps"
+  ],
+  "pyrefly.pythonPath": "./backend/venv/Scripts/python.exe",
   "css.customData": [],
   "css.lint.unknownAtRules": "ignore"
 }

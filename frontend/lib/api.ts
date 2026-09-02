@@ -27,7 +27,7 @@ export const FALLBACK_SITE_CONFIG: SiteConfig = {
   lkr_multiplier: 200.0,
   usd_multiplier: 0.65,
   aud_multiplier: 1.0,
-  contact_email: 'support@aussiesupplements.com.au',
+  contact_email: 'wpjinadhi@gmail.com',
   contact_phone: '1300 892 877',
   warehouse_location: 'Melbourne Distribution Hub, Victoria, Australia',
   is_store_open: true,

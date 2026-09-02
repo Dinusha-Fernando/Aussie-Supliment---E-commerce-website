@@ -1,0 +1,14 @@
+[tool.pyrefly]
+search-paths = [
+    ".",
+    "apps"
+]
+
+[tool.pyright]
+include = ["."]
+extraPaths = [
+    ".",
+    "apps"
+]
+venvPath = "."
+venv = "venv"
